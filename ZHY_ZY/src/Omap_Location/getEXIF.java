@@ -6,13 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import com.drew.imaging.jpeg.JpegMetadataReader;
+import com.drew.imaging.jpeg.JpegProcessingException;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 
 
 public class getEXIF {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		File jpegFile=new File("C:\\Users\\周洋\\Desktop\\集中式");
+		File jpegFile=new File("D:\\新建文件夹\\小米6备份\\手机分身空间\\Facebook\\");
 		getEXIF gx=new getEXIF();
 		gx.readFile(jpegFile);
 	}
