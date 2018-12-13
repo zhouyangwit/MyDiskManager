@@ -17,7 +17,7 @@ public class getEXIF {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		File jpegFile=new File("D:\\新建文件夹\\小米6备份\\手机分身空间\\Facebook\\");
+		File jpegFile=new File("E:\\新洲污普\\新建文件夹\\");
 		getEXIF gx=new getEXIF();
 		gx.readFile(jpegFile);
 	}
@@ -36,7 +36,7 @@ public class getEXIF {
 					{
 						System.out.print("name : " + tag.getTagName().replaceAll(" ", "") + "  -->");
 						System.out.println("desc : " + tag.getDescription().replaceAll(" ", ""));
-					if(tag.getTagName().endsWith("Latitude")||tag.getTagName().endsWith("Longitude"))
+						if(tag.getTagName().endsWith("Latitude")||tag.getTagName().endsWith("Longitude"))
 						{
 							exifString=exifString+"\t"+ConvertDuFenMiao(tag.getDescription().replaceAll(" ", ""));
 						}
@@ -50,7 +50,7 @@ public class getEXIF {
 			e.printStackTrace();
 		}
 		System.out.println(exifString);
-		Write(exifString);
+//		Write(exifString);
 	}
 	
 	public void readFile(File file)
