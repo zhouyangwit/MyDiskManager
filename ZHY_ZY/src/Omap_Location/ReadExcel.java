@@ -14,7 +14,6 @@ import javax.swing.JFileChooser;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -46,9 +45,12 @@ public class ReadExcel {
 			System.err.println("本程序不支持打开文件类型，"+excel.getName());
 		}
 		Iterator<excel_elements> iter=list.iterator();
+		excel_elements temp=null;
 		while(iter.hasNext())
 		{
-			System.out.println(iter.next().CompanyName);
+			temp=iter.next();
+			System.out.println(temp.CompanyName+"\t"+temp.latitude);
+			
 		}
 		System.out.println(excel.length());
 	}
@@ -63,7 +65,7 @@ public class ReadExcel {
 		HSSFWorkbook wb=null;
 		HSSFSheet sheet=null;
 		HSSFRow row=null;
-		Cell cell=null;
+//		Cell cell=null;
 		try {
 			is=new FileInputStream(excel);
 			wb=new HSSFWorkbook(is);
@@ -80,10 +82,8 @@ public class ReadExcel {
 			}
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return excel_info;
@@ -97,7 +97,7 @@ public class ReadExcel {
 		XSSFWorkbook wb=null;
 		XSSFSheet sheet=null;
 		XSSFRow row=null;
-		Cell cell=null;
+//		Cell cell=null;
 		try {
 			is=new FileInputStream(excel);
 			wb=new XSSFWorkbook(is);
@@ -115,10 +115,8 @@ public class ReadExcel {
 			}
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return excel_info;
