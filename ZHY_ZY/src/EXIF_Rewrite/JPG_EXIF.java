@@ -15,7 +15,7 @@ public class JPG_EXIF {
 	
 	public static void main(String[] args)
 	{
-		File f=new File("C:\\Users\\周洋\\Desktop\\QQ图片20181216215623.jpg");
+		File f=new File("C:\\Users\\周洋\\Desktop\\IMG_20181217_145646.jpg");
 		new JPG_EXIF().getEXIF(f);
 	}
 	
@@ -50,13 +50,42 @@ public class JPG_EXIF {
 			for(Directory directory:metadata.getDirectories())
 			{
 				int index=directory.getTags().size();
-				System.out.println(directory.getName()+"\tindex="+index);
+	//			System.out.println(directory.getName()+"\tindex="+index);
 				String[] tag_info=new String[index];
 				index=0;
 	//			System.out.print("public void set"+directory.getName()+"Values(");
 				for(Tag tag:directory.getTags())
 				{
-					tag_info[index]=tag.getDescription();
+					if(tag.getTagName().equals("File Modified Date"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="File Modified Date :"+tag.getDescription();
+					}
+					if(tag.getTagName().equals("Date/Time"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="Date/Time :"+tag.getDescription();
+					}
+					if(tag.getTagName().equals("Date/Time Original"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="Date/Time Original :"+tag.getDescription();
+					}
+					if(tag.getTagName().equals("Date/Time Digitized"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="Date/Time Digitized :"+tag.getDescription();
+					}
+					if(tag.getTagName().contains("GPS Time-Stamp"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="GPS Time-Stamp :"+tag.getDescription();
+					}
+					if(tag.getTagName().contains("GPS Date Stamp"))
+					{
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
+						tag_info[index]="GPS Date Stamp :"+tag.getDescription();
+					}
 					index++;
 	//				System.out.print("String  "+tag.getTagName()+"  ,");
 				}
@@ -74,13 +103,13 @@ public class JPG_EXIF {
 					elements.setGPSValues(tag_info);
 				}
 				if(directory.getName().contains("JPEG")){
-					elements.setJPEGValues(tag_info);
+				//	elements.setJPEGValues(tag_info);
 				}
 				if(directory.getName().contains("Interoperability")){
-					elements.setInteroperabilityValues(tag_info);
+				//	elements.setInteroperabilityValues(tag_info);
 				}
 				if(directory.getName().contains("Thumbnail")){
-					elements.setExifThumbnailValues(tag_info);
+				//	elements.setExifThumbnailValues(tag_info);
 				}
 		//		System.out.print("){\n\n}\n\n\n");
 			}
@@ -89,7 +118,7 @@ public class JPG_EXIF {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(elements.GPSDateStamp);
+		System.out.println(elements.DateTime);
 	//	return null;
 	}
 	
