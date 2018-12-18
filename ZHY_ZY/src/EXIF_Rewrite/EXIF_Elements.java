@@ -261,5 +261,41 @@ public class EXIF_Elements {
 		this.Thumbnail_X_Resolution =   tag_info[5]   ;
 		this.Thumbnail_Y_Resolution =   tag_info[6]   ;
 	}
+	
+	public void setFileModifiedDate(String tag_info)
+	{
+		this.FileModifiedDate=tag_info;
+	}
+	
+	public void setExifIFD0DateTime(String tag_info)
+	{
+		this.DateTime=tag_info;
+	}
+	
+	public void setExifSubIFDDateTime(String tag_info)
+	{
+	//	System.out.println(tag_info);
+		if(!tag_info.equals("null"))
+		{
+			String[] temp=tag_info.split(";");
+		
+			this.DateTimeOriginal =  	temp[0];
+			this.DateTimeDigitized =  	temp[1];
+		}
+		
+	}
+	
+	public void setGPSValues(String tag_info)
+	{
+		
+		String[] temp=tag_info.split(";");
+		System.out.println(tag_info+"    "+temp[0]+"    "+temp[1]);
+		
+		this.GPSTimeStamp =   temp[0]   ;
+		this.GPSDateStamp =   temp[1]   ;
+		
+	}
 
+	
+	
 }
