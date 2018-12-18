@@ -21,7 +21,8 @@ public class getGPS {
 		jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		jfc.showDialog(null, null);
 		File f=jfc.getSelectedFile();
-		new getGPS().readFolder(f);
+		getGPS gps=new getGPS();
+		gps.readFolder(f);
 
 	}
 
