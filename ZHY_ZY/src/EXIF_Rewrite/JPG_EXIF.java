@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Directory;
@@ -15,7 +17,11 @@ public class JPG_EXIF {
 	
 	public static void main(String[] args)
 	{
-		File f=new File("C:\\Users\\周洋\\Desktop\\IMG_20181217_145646.jpg");
+		JFileChooser jfc=new JFileChooser("C:\\Users\\周洋\\Desktop");
+		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		jfc.showDialog(null, "open");
+		
+		File f=jfc.getSelectedFile();
 		new JPG_EXIF().getEXIF(f);
 	}
 	
@@ -51,53 +57,61 @@ public class JPG_EXIF {
 			{
 				int index=directory.getTags().size();
 	//			System.out.println(directory.getName()+"\tindex="+index);
-				String[] tag_info=new String[index];
+				String tag_info=null;
 				index=0;
 	//			System.out.print("public void set"+directory.getName()+"Values(");
+				
 				for(Tag tag:directory.getTags())
 				{
 					if(tag.getTagName().equals("File Modified Date"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="File Modified Date :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]       "+tag.getTagName());
+						tag_info="File Modified Date :"+tag.getDescription();
 					}
+					
 					if(tag.getTagName().equals("Date/Time"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="Date/Time :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]       "+tag.getTagName());
+						tag_info="Date/Time :"+tag.getDescription();
 					}
-					if(tag.getTagName().equals("Date/Time Original"))
+					
+					if(tag.getTagName().contains("Date/Time Original"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="Date/Time Original :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]        "+tag.getTagName());
+						tag_info=tag_info+";Date/Time Original :"+tag.getDescription();
 					}
-					if(tag.getTagName().equals("Date/Time Digitized"))
+					
+					if(tag.getTagName().contains("Date/Time Digitized"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="Date/Time Digitized :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]       "+tag.getTagName());
+						tag_info="Date/Time Digitized :"+tag.getDescription();
 					}
+					
 					if(tag.getTagName().contains("GPS Time-Stamp"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="GPS Time-Stamp :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]       "+tag.getTagName());
+						tag_info="GPS Time-Stamp :"+tag.getDescription();
 					}
+					
 					if(tag.getTagName().contains("GPS Date Stamp"))
 					{
-						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]");
-						tag_info[index]="GPS Date Stamp :"+tag.getDescription();
+						System.out.println(tag.getDirectoryName()+"\ttag_info["+index+"]       "+tag.getTagName());
+						tag_info=tag_info+";GPS Date Stamp :"+tag.getDescription();
 					}
 					index++;
 	//				System.out.print("String  "+tag.getTagName()+"  ,");
 				}
 				
+				System.out.println(tag_info);
+				
 				if(directory.getName().contains("File")){
-					elements.setFileValues(tag_info);
+					elements.setFileModifiedDate(tag_info);
 				}
 				if(directory.getName().contains("Exif IFD0")){
-					elements.setExifIFD0Values(tag_info);;
+					elements.setExifIFD0DateTime(tag_info);;
 				}
 				if(directory.getName().contains("SubIFD")){
-					elements.setExifSubIFDValues(tag_info);
+					elements.setExifSubIFDDateTime(tag_info);
 				}
 				if(directory.getName().contains("GPS")){
 					elements.setGPSValues(tag_info);
@@ -118,7 +132,7 @@ public class JPG_EXIF {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(elements.DateTime);
+	//	System.out.println(elements.DateTime);
 	//	return null;
 	}
 	
@@ -142,6 +156,13 @@ public class JPG_EXIF {
 				}
 			}
 		}
+	}
+	
+	public boolean setEXIF(File jpeg)
+	{
+		boolean flag=false;
+		
+		return flag;
 	}
 	
 }
