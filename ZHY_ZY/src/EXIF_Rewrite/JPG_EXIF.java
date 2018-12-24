@@ -17,12 +17,12 @@ public class JPG_EXIF {
 	
 	public static void main(String[] args)
 	{
-		JFileChooser jfc=new JFileChooser("C:\\Users\\周洋\\Desktop");
+		JFileChooser jfc=new JFileChooser("E:\\新洲污普项目\\");
 		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		jfc.showDialog(null, "open");
 		
 		File f=jfc.getSelectedFile();
-		new JPG_EXIF().getEXIF(f);
+		new JPG_EXIF().readEXIF(f);
 	}
 	
 	
@@ -35,7 +35,8 @@ public class JPG_EXIF {
 				
 				for(Tag tag:directory.getTags())
 				{
-						System.out.println(tag.getDirectoryName()+"     "+tag.getTagName()+"     "+tag.getDescription());
+					if(tag.getTagName().contains("GPS"))
+						System.out.println(tag.getDirectoryName()+"     "+tag.getTagName()+"     "+tag.getDescription().replaceAll(" ", ""));
 				}
 				System.out.println();
 			}
