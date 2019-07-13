@@ -46,8 +46,8 @@ public class Database {
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
-			} catch (SQLException e1) {
 				System.out.println("数据更新出现错误，现已回滚至原始状态");
+			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -78,7 +78,13 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		try {
+			rs.close();
+			pstmt.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
