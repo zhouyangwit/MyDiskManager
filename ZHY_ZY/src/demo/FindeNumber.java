@@ -4,7 +4,7 @@ public class FindeNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new FindeNumber().FindZhishu(1000);;;
+		new FindeNumber().PythagoreanTriple(0,4000);
 
 	}
 	
@@ -143,7 +143,7 @@ public class FindeNumber {
 		double time;
 		start_time=System.currentTimeMillis();
 		double length=100E100;
-		Log log=new Log();
+	//	Log log=new Log();
 		for(x=2;x<=length;x++)
 		{
 			for(y=2;y<x;y++)
@@ -163,8 +163,8 @@ public class FindeNumber {
 						if(flag)
 						{
 							count++;
-				//			System.out.println("【"+count+"】\t【"+x+"\t"+y+"\t"+z+"】");
-							log.log_record(z+"\t"+y+"\t"+x);
+							System.out.println("【"+count+"】\t【"+x+"\t"+y+"\t"+z+"】");
+				//			log.log_record(z+"\t"+y+"\t"+x);
 							if(count>=countNum)
 								break;
 						}
