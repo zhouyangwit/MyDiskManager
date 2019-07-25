@@ -17,11 +17,7 @@ public class getFilePath {
 	}
 	public String getFileString()
 	{
-		JFileChooser jfc=new JFileChooser();
-		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		jfc.showDialog(new JLabel(),"打开");
-		File file=jfc.getSelectedFile();
-		return file.toString();
+		return getFile().toString();
 	}
 	
 	public File getFolder()
@@ -34,11 +30,7 @@ public class getFilePath {
 	}
 	public String getFolderString()
 	{
-		JFileChooser jfc=new JFileChooser();
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		jfc.showDialog(new JLabel(),"打开");
-		File file=jfc.getSelectedFile();
-		return file.toString();
+		return getFolder().toString();
 	}
 	
 }
