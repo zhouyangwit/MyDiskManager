@@ -35,7 +35,7 @@ public class JPG_EXIF {
 				
 				for(Tag tag:directory.getTags())
 				{
-					if(tag.getTagName().contains("GPS"))
+			//		if(tag.getTagName().contains("GPS"))
 						System.out.println(tag.getDirectoryName()+"     "+tag.getTagName()+"     "+tag.getDescription().replaceAll(" ", ""));
 				}
 				System.out.println();

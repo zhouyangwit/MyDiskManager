@@ -12,7 +12,7 @@ import com.drew.metadata.Tag;
 public class Image {
 	
 	
-	public String readEXIF(File jpegFile)
+	public String getEXIF(File jpegFile)
 	{
 		String EXIF=null;
 		try {
@@ -33,4 +33,28 @@ public class Image {
 		return EXIF;
 	}
 
+	public String getGPS(File jpegFile)
+	{
+		String gps=null;
+		try {
+			Metadata metadata=JpegMetadataReader.readMetadata(jpegFile);
+			gps="";
+			for(Directory directory:metadata.getDirectories())
+			{
+				for(Tag tag:directory.getTags())
+				{
+					if(tag.getDirectoryName().contains("GPS"))
+					{
+						gps=tag.toString();
+					}
+				}
+			}
+			
+		} catch (JpegProcessingException | IOException e) {
+			e.printStackTrace();
+		}
+		return gps;
+	}
+	
+	
 }
